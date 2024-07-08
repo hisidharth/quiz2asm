@@ -1,0 +1,26 @@
+section .data
+    a dd 3       
+    b dd 7    
+    c dd 6         
+    d dd 1          
+
+section .bss
+    result resd 1      
+
+section .text
+    global _start
+
+_start:
+    ;result = (a*b) + (c*d)
+    mov eax, [a]   
+    imul eax, [b]
+    mov ebx, eax
+    
+    mov eax, [c]
+    imul eax, [d]
+    
+    add eax, ebx
+    mov [result], eax 
+
+    mov eax, 1         
+    int 0x80
